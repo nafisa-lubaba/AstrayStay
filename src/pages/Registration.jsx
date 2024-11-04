@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import  { useContext, useState } from 'react';
 import { AuthContext } from '../authProvider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -22,14 +22,14 @@ const Registration = () => {
     const onSubmit = (data) => {
         const { email, password } = data
         if (password.length < 6) {
-            toast('Password should be 6 character or more')
+            Swal.fire('Password should be 6 character or more')
         }
         else if (!/[A-Z]/.test(password)) {
-            toast('Password should have at lease one Uppercase letter')
+            Swal.fire('Password should have at lease one Uppercase letter')
             return;
         }
         else if (!/[a-z]/.test(password)) {
-            toast('Password should have at lease one Lowercase letter')
+            Swal.fire('Password should have at lease one Lowercase letter')
             return;
         }
         createUser(email, password)
