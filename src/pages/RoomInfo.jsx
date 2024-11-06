@@ -3,11 +3,16 @@ import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const RoomInfo = () => {
+    const [startDate, setStartDate] = useState(new Date());
+
     const [isOpen, setIsOpen] = useState(false);
-    const [bookingFrom, setBookingFrom] = useState('')
+
 
     // const [review, setReview] = useState([]);
 
@@ -19,6 +24,7 @@ const RoomInfo = () => {
 
     // Assuming data is an object with properties like _id, title, image, and room_description
     const { _id, title, banner_image, room_description, room_images, price_per_night, room_size, availability, special_offers, max_guests, beds } = data;
+    const date = startDate;
     const email = user?.email;
     const name = user?.displayName;
     const photourl = user?.photoURL;
@@ -26,7 +32,7 @@ const RoomInfo = () => {
 
     const handleClick = async e => {
         const bookingData = {
-            bookingFrom,
+            date,
             availability: 'unAvailable',
             email,
             name,
@@ -44,20 +50,20 @@ const RoomInfo = () => {
 
         }
         console.log(bookingData);
-        try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookingData)
-            console.log(data)
-            Swal.fire({
-                icon: 'success',
-                title: 'Booking successful',
-                showConfirmButton: false,
-                timer: 1500,
-            });
-            setIsOpen(false)
+        // try {
+        //     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookingData)
+        //     console.log(data)
+        //     Swal.fire({
+        //         icon: 'success',
+        //         title: 'Booking successful',
+        //         showConfirmButton: false,
+        //         timer: 1500,
+        //     });
+        //     setIsOpen(false)
 
-        } catch (err) {
-            console.log(err);
-        }
+        // } catch (err) {
+        //     console.log(err);
+        // }
 
     }
     return (
@@ -146,17 +152,13 @@ const RoomInfo = () => {
                                         </div>
                                         <div className="flex items-center justify-between">
                                             <div className='flex flex-col '>
-
-
-                                                <label className='text-black'>From</label>
-                                                <input className="text-black"
-                                                    type="date"
-                                                    name="bookingFrom"
-                                                    id="bookingFrom"
-                                                    value={bookingFrom}
-                                                    required
-                                                    onChange={(e) => setBookingFrom(e.target.value)}
-                                                />
+                                            <label className='text-gray-700'>date</label>
+                                                <div className=''>
+                                                <DatePicker
+                                                className='border p-2 w-full rounded-md'
+                                                selected={startDate}
+                                                onChange={date => setStartDate(date)} />
+                                        </div>
                                             </div>
 
                                         </div>
