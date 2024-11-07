@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const RoomInfo = () => {
     const [startDate, setStartDate] = useState(new Date());
+    const [room, setRoom] = useState([]);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -50,20 +51,27 @@ const RoomInfo = () => {
 
         }
         console.log(bookingData);
-        // try {
-        //     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookingData)
-        //     console.log(data)
-        //     Swal.fire({
-        //         icon: 'success',
-        //         title: 'Booking successful',
-        //         showConfirmButton: false,
-        //         timer: 1500,
-        //     });
-        //     setIsOpen(false)
+        try {
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/booking`, bookingData)
+            console.log(data)
 
-        // } catch (err) {
-        //     console.log(err);
-        // }
+          const {newData} = await axios.put(`${import.meta.env.VITE_API_URL}/rooms/${_id}`);
+          console.log(newData)
+
+          const updateData = await axios.get(`${import.meta.env.VITE_API_URL}/rooms/${_id}`);
+          setRoom(updateData.data);
+          console.log(room)
+            Swal.fire({
+                icon: 'success',
+                title: 'Booking successful',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            setIsOpen(false)
+
+        } catch (err) {
+            console.log(err);
+        }
 
     }
     return (
