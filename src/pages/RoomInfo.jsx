@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
@@ -9,8 +9,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const RoomInfo = () => {
+    const data = useLoaderData();
+    console.log(data);
+
     const [startDate, setStartDate] = useState(new Date());
-    const [room, setRoom] = useState([]);
+    const [room, setRoom] = useState(data);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,8 +23,11 @@ const RoomInfo = () => {
     const { user } = useContext(AuthContext)
     console.log(user)
 
-    const data = useLoaderData();
-    console.log(data);
+    useEffect(() => {
+        setRoom(data);
+    }, [data]);
+
+   
 
     // Assuming data is an object with properties like _id, title, image, and room_description
     const { _id, title, banner_image, room_description, room_images, price_per_night, room_size, availability, special_offers, max_guests, beds } = data;
@@ -60,7 +66,7 @@ const RoomInfo = () => {
 
           const updateData = await axios.get(`${import.meta.env.VITE_API_URL}/rooms/${_id}`);
           setRoom(updateData.data);
-          console.log(room)
+        //   console.log(room)
             Swal.fire({
                 icon: 'success',
                 title: 'Booking successful',
