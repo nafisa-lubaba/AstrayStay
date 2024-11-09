@@ -4,12 +4,16 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 const MyBooking = () => {
     const [items, setItems] = useState([]);
     const [selectedRoomTitle, setSelectedRoomTitle] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const [Id, setId] = useState('');
+
+    
     const { user } = useContext(AuthContext);
     const name = user?.displayName;
     const email = user?.email;
@@ -102,6 +106,11 @@ const MyBooking = () => {
             Swal.fire('Error', 'An error occurred while posting the review', 'error');
         }
     };
+    const handleButtonClick = (list) => {
+        setIsOpen(true);
+        setSelectedRoomTitle(list.title);
+        setId(list.bookingId);
+    }
 
 
     return (
@@ -124,15 +133,15 @@ const MyBooking = () => {
                                 </div>
                             </div>
                             <p className="text-xl">Room Status : {list.availability}</p>
-                            <p className="text-xl">Deadline : {list.deadline}</p>
-                            <div className="flex items-center">
+                            <p className="text-xl">Date : {list.date}</p>
+                            <div  onClick={() => handleButtonClick(list)} className="flex items-center">
                                 <button className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
                                     Review
                                 </button>
 
                                 <div className="relative flex justify-center">
                                     <div className="p-5">
-                                        <Link to={`/update/${list._id}`}>
+                                        <Link to={`/updates/${list._id}`}>
                                             <button className="btn btn-outline ">Update Now</button>
                                         </Link>
                                     </div>

@@ -15,6 +15,7 @@ import Rooms from './pages/Rooms.jsx';
 import RoomInfo from './pages/RoomInfo.jsx';
 import MyBooking from './pages/MyBooking.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import UpdatedRooms from './pages/UpdatedRooms.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,6 +62,12 @@ const router = createBrowserRouter([
       
        
       },
+      {
+        path: '/updates/:id',
+        element: <UpdatedRooms></UpdatedRooms>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/myBooking/${params.id}`),
+      }
     ]
   },
 
