@@ -125,7 +125,7 @@ const MyBooking = () => {
                         <div className="lg:w-[50%] space-y-6 pl-5">
                             <h1 className="text-4xl pt-5">{list.title}</h1>
                             <p>{list.features_paragraph}</p>
-                            <p>{new Date(list.bookingFrom).toLocaleDateString()}</p>
+                            {/* <p>{new Date(list.bookingFrom).toLocaleDateString()}</p> */}
                             <div className="flex items-center">
                                 <IoMdPerson className="text-3xl" />
                                 <div className="text-xl">
