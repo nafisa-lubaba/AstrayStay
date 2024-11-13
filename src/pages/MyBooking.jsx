@@ -13,7 +13,7 @@ const MyBooking = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [Id, setId] = useState('');
 
-    
+
     const { user } = useContext(AuthContext);
     const name = user?.displayName;
     const email = user?.email;
@@ -36,39 +36,39 @@ const MyBooking = () => {
     const handleCancle = async (id, bookingId) => {
         console.log(id, bookingId);
         const bookingData = {
-          availability: 'unAvailable',
+            availability: 'unAvailable',
         }
         try {
-          const confirmation = await Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          });
-          if (confirmation.isConfirmed) {
-    
-            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/myBooking/${id}`)
-            console.log(data)
-            const { data: update } = await axios.put(`${import.meta.env.VITE_API_URL}/roomsDlt/${bookingId}`, bookingData)
-            console.log(update);
-            Swal.fire({
-              title: 'Success!',
-              text: 'Cancel Successfully',
-              icon: 'success',
-              confirmButtonText: 'Cool'
+            const confirmation = await Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
             });
-          }
-    
-          //refresh ui
-          getData()
+            if (confirmation.isConfirmed) {
+
+                const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/myBooking/${id}`)
+                console.log(data)
+                const { data: update } = await axios.put(`${import.meta.env.VITE_API_URL}/roomsDlt/${bookingId}`, bookingData)
+                console.log(update);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Cancel Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+            }
+
+            //refresh ui
+            getData()
         } catch (err) {
-          console.log(err.message)
-          // toast.error(err.message)
+            console.log(err.message)
+            // toast.error(err.message)
         }
-      }
+    }
 
     const handleReviewSubmit = async e => {
         e.preventDefault();
@@ -106,6 +106,8 @@ const MyBooking = () => {
             Swal.fire('Error', 'An error occurred while posting the review', 'error');
         }
     };
+
+
     const handleButtonClick = (list) => {
         setIsOpen(true);
         setSelectedRoomTitle(list.title);
@@ -124,8 +126,10 @@ const MyBooking = () => {
                         </div>
                         <div className="lg:w-[50%] space-y-6 pl-5">
                             <h1 className="text-4xl pt-5">{list.title}</h1>
-                            <p>{list.features_paragraph}</p>
-                            {/* <p>{new Date(list.bookingFrom).toLocaleDateString()}</p> */}
+                            <p className="font-semibold">
+                                f: <span className="font-bold ml-3">{list.features_paragraph}</span>
+                            </p>
+
                             <div className="flex items-center">
                                 <IoMdPerson className="text-3xl" />
                                 <div className="text-xl">
@@ -134,8 +138,8 @@ const MyBooking = () => {
                             </div>
                             <p className="text-xl">Room Status : {list.availability}</p>
                             <p className="text-xl">Date : {list.date}</p>
-                            <div  onClick={() => handleButtonClick(list)} className="flex items-center">
-                                <button className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
+                            <div  className="flex items-center">
+                                <button onClick={() => handleButtonClick(list)} className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
                                     Review
                                 </button>
 
