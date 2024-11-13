@@ -14,6 +14,7 @@ const RoomInfo = () => {
     const [room, setRoom] = useState(data);
     const [startDate, setStartDate] = useState(new Date());
     const [review, setReview] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,7 +28,7 @@ const RoomInfo = () => {
     }, []);
 
 
-    // Assuming data is an object with properties like _id, title, image, and room_description
+
     const { _id, title, banner_image, room_description, room_images, price_per_night, room_size, features_paragraph, availability, special_offers, max_guests, beds } = room;
 
     useEffect(() => {
@@ -105,20 +106,17 @@ const RoomInfo = () => {
                             </p>
                         </div>
                         <div className="mt-4">
-                            <div className="flex items-center justify-between">
+                            <div className="flex justify-between">
                                 <div className="flex items-center">
 
-                                    <h1 className="px-2 text-xl"> | Max Guest:{max_guests}</h1>
-                                </div>
-                                <div className="flex items-center">
+                                    <h2 className=" text-xl font-bold text-[#2ccb99]">Price: <span className="text-[#158260] pl-2">${price_per_night}</span></h2>
 
-                                    <h1 className="px-2 text-xl"> | Beds: {beds}</h1>
-                                </div>
-                                <div className="flex items-center">
+                                    <a href="#" className="mx-2 ml-3 font-semibold text-xl text-[#2ccb99]" tabIndex="0" role="link">Room Size: <span className="text-[#158260] pl-2">{room_size}</span></a>
 
-                                    <h1 className="px-2 text-xl"> | Size :{room_size}</h1>
                                 </div>
                             </div>
+                            <a href="#" className=" mt-3 font-semibold lg:text-xl   text-[#2ccb99]  dark:text-gray-200" tabIndex="0" role="link"> special_offers: <span className="font-bold pl-2 text-[#158260]">  {special_offers}</span>
+                            </a>
                         </div>
                         <div className="mt-4">
                             <div className="flex items-center justify-between">
@@ -140,8 +138,8 @@ const RoomInfo = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="py-2 dark:bg-gray-100">
-                        <h1 className="text-center block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline" tabIndex="0" role="link">Our {room_description} images</h1>
+                    <div className="py-2">
+
                         <div className="container flex flex-col justify-center p-4 mx-auto">
                             <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2">
                                 {room_images.map((roomImage, index) => (
@@ -155,33 +153,78 @@ const RoomInfo = () => {
                             <form onSubmit={handleClick}>
                                 {
                                     availability === 'unAvailable' ?
-                                        <button disabled type="button" className="btn bg-blue-700 text-white w-full mt-5 mb-5 ml-3" >Book Now</button>
+                                        <button disabled type="button" className="btn bg-blue-700 text-white w-full mt-5 mb-5 ml-3">
+                                            Booked</button>
                                         :
-                                        <button type="button" className="btn bg-blue-700 text-white w-full mt-5 mb-5 ml-3" onClick={() => document.getElementById('my_modal_5').showModal()}>Book Now</button>
+                                        <button type="button" className="w-full bg-[#158260] text-white px-6 py-2 mx-auto tracking-wide capitalize transition-colors duration-300 transform  rounded-md hover:bg-white hover:text-black" onClick={() =>  setIsOpen(true)} >Confirm Booking</button>
                                 }
 
-                                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                                    <div className="modal-box">
-                                        <h3 className="font-bold text-lg">Hello!</h3>
-                                        <div className='flex flex-col gap-2 ml-3 mt-5'>
-                                            <label className='text-gray-700'>Deadline</label>
-                                            <DatePicker
-                                                className='border p-2 w-full rounded-md'
-                                                selected={startDate}
-                                                onChange={date => setStartDate(date)} />
-                                        </div>
-                                        <button
-                                            type='submit'
-                                            className='bg-blue-700 text-white btn mt-5'>
-                                            Confirm
-                                        </button>
-                                        <div className="modal-action">
-                                            <form method="dialog">
-                                                <button className="btn">Close</button>
-                                            </form>
+                                {isOpen && (
+                                    <div className="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                        <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                                            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+
+                                            <div className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl rtl:text-right dark:bg-gray-900 sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+                                                <div>
+                                                    <h2 className="text-[#2ccb99]">{title}</h2>
+                                                </div>
+                                                <div>
+                                                    <div className="flex flex-col">
+                                                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Maximum number of guest:
+                                                            <span className="text-[#2ccb99]"> {max_guests}</span></p>
+                                                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Numer of bed:
+                                                            <span className="text-[#2ccb99]"> {beds}</span></p>
+                                                    </div>
+                                                    <div className="flex items-center justify-between">
+                                                        <div className='flex flex-col '>
+                                                            <label className='text-gray-700'>date</label>
+                                                            <div>
+
+                                                                <DatePicker className='border p-2 w-full rounded-md' selected={startDate}
+                                                  onChange={date => setStartDate(date)}>
+
+                                                                </DatePicker>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                            
+
+
+                                                        
+                                                           
+                                                        
+
+                                                    </div>
+
+                                                    <div className="mt-2 text-center">
+                                                        <h3 className="text-lg font-medium leading-6 text-gray-800 capitalize dark:text-white" id="modal-title"></h3>
+                                                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-5 sm:flex sm:items-center sm:justify-between">
+
+
+                                                    <div className="sm:flex sm:items-center ">
+                                                        <button onClick={handleClick} className="w-full px-4 py-2 mt-2 text-sm font-medium bg-[#158260] tracking-wide text-white capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:mt-0 sm:w-auto sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                                                            Book Now
+
+                                                        </button>
+
+                                                        <button onClick={() => setIsOpen(false)} className="w-full px-4 py-2 mt-2 text-sm font-medium bg-[#158260] tracking-wide text-white capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:mt-0 sm:w-auto sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                                                            Cancel
+                                                        </button>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </dialog>
+                                )}
                             </form>
                         </div>
                     </div>
