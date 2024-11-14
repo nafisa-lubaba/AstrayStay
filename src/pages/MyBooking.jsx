@@ -249,7 +249,7 @@ const MyBooking = () => {
     };
 
     const handleCancle = async (id, bookingId) => {
-        const bookingData = { availability: 'unAvailable' };
+        const bookingData = { availability: 'Available' };
         try {
             const confirmation = await Swal.fire({
                 title: "Are you sure?",
@@ -343,7 +343,7 @@ const MyBooking = () => {
                                 <div className="text-xl">Max Guests: {list.max_guests}</div>
                             </div>
                             <p className="text-xl">Room Status: {list.availability}</p>
-                            <p className="text-xl">Date: {list.date}</p> {/* Confirm if this is the updated date */}
+                            <p className="text-xl">Date: {list.deadline}</p> {/* Confirm if this is the updated date */}
                             <div className="flex items-center">
                                 <button onClick={() => handleButtonClick(list)} className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
                                     Review

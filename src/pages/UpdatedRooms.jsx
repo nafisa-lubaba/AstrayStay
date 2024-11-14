@@ -105,7 +105,8 @@ const UpdatedRooms = () => {
     const [startDate, setStartDate] = useState(new Date());
 
     const roomsInfo = items.find(item => item._id === id);
-    const { _id, date } = roomsInfo || {};
+    console.log(roomsInfo)
+    const { _id, deadline } = roomsInfo || {};
 
     useEffect(() => {
         if (user) {
@@ -123,10 +124,10 @@ const UpdatedRooms = () => {
     };
 
     useEffect(() => {
-        if (date) {
-            setStartDate(new Date(date));
+        if (deadline) {
+            setStartDate(new Date(deadline));
         }
-    }, [date]);
+    }, [deadline]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -182,7 +183,7 @@ const UpdatedRooms = () => {
                         <DatePicker
                             className="border p-2 w-full rounded-md mt-4"
                             selected={startDate}
-                            onChange={(date) => setStartDate(date)}
+                            onChange={(deadline) => setStartDate(deadline)}
                         />
                     </div>
                     <button type="submit" className="bg-blue-700 text-white btn mt-4">
