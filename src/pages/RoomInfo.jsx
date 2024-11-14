@@ -36,7 +36,7 @@ const RoomInfo = () => {
     }, [data]);
     const filteredReview = review.filter(reviews => reviews.room_title === title);
 
-    const date = startDate;
+    const deadline = startDate;
     const email = user?.email;
     const name = user?.displayName;
     const photourl = user?.photoURL;
@@ -47,7 +47,7 @@ const RoomInfo = () => {
     const handleClick = async e => {
         e.preventDefault();
         const bookingData = {
-            date,
+            deadline,
             availability: 'unAvailable',
             email,
             name,
@@ -182,7 +182,7 @@ const RoomInfo = () => {
                                                             <div>
 
                                                                 <DatePicker className='border p-2 w-full rounded-md' selected={startDate}
-                                                  onChange={date => setStartDate(date)}>
+                                                  onChange={deadline => setStartDate(deadline)}>
 
                                                                 </DatePicker>
                                                             </div>

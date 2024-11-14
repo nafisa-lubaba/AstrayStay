@@ -16,6 +16,7 @@ import RoomInfo from './pages/RoomInfo.jsx';
 import MyBooking from './pages/MyBooking.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import UpdatedRooms from './pages/UpdatedRooms.jsx';
+import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,13 +43,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/rooms',
-        element:<Rooms></Rooms>,
+        element:<PrivateRoute>
+          <Rooms></Rooms>,
+        </PrivateRoute>
        
       },
       {
         path: '/rooms/:id',
         element: 
-          <RoomInfo></RoomInfo>,
+         <PrivateRoute>
+           <RoomInfo></RoomInfo>,
+         </PrivateRoute>,
         loader:({ params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
           
        

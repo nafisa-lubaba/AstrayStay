@@ -132,7 +132,7 @@ const UpdatedRooms = () => {
         event.preventDefault();
 
         const BookData = {
-            deadline: startDate.toISOString(), // Ensure date is in ISO format
+            deadline: startDate, // Ensure date is in ISO format
             email: user?.email,
         };
 
