@@ -186,9 +186,10 @@ const UpdatedRooms = () => {
                             onChange={(deadline) => setStartDate(deadline)}
                         />
                     </div>
-                    <button type="submit" className="bg-blue-700 text-white btn mt-4">
-                        Update Booking Date
-                    </button>
+                    <button className="bg-green-600 text-white mt-4 mb-4 px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700">
+                                            Update Booking Date
+                                        </button>
+                    
                 </form>
             ) : (
                 <p>Loading room details...</p>

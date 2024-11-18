@@ -9,7 +9,7 @@ const PrivateRoute = ({children}) => {
     if (loading) return <p>Loading.....</p>
     if (user) return children
   
-    return <Navigate to ='/signin' state={location.pathname} replace={true}></Navigate>
+    return <Navigate to ='/signup' state={location.pathname} replace={true}></Navigate>
 };
 
 export default PrivateRoute;

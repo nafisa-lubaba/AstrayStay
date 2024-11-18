@@ -24,13 +24,26 @@ const Slide = ({ image, name, comment_text, rating, text3 }) => {
             <div className="flex flex-col items-center justify-center mt-8">
                 <img className="object-cover rounded-full w-24 h-24" src={image} alt="" />
 
-                <div className="mt-4 text-center">
+                {/* <div className="mt-4 text-center">
                     <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">{name}</h1>
                 </div>
 
                 <div className="w-[700px] mt-4 mb-16 text-center">
                     <h1 className="font-semibold text-gray-800 dark:text-white">{comment_text}</h1>
-                </div>
+                </div> */}
+
+<div className="mt-4 text-center">
+    <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-white">
+        {name}
+    </h1>
+</div>
+
+<div className="w-full px-4 sm:w-[500px] lg:w-[700px] sm:px-6 lg:px-8 mt-4 mb-8 text-center">
+    <h1 className="text-sm sm:text-base lg:text-lg font-medium text-gray-800 dark:text-white">
+        {comment_text}
+    </h1>
+</div>
+
 
             </div>
 

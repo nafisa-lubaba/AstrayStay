@@ -324,93 +324,201 @@ const MyBooking = () => {
     };
 
     return (
-        <div>
-            <div className="bg-gradient-to-r from-indigo-50 from-10% via-sky-50 via-30% to-emerald-100 to-90%">
-                <h1 className="text-3xl text-center text-[#2ccb99] py-5">My booking room</h1>
-                {items.map((list) => (
-                    <div key={list._id} className="flex lg:w-full rounded-2xl border border-dashed p-2">
-                        <div className="lg:w-[50%]">
-                            <img src={list.banner_image} alt="Room" />
-                        </div>
-                        <div className="lg:w-[50%] space-y-6 pl-5">
-                            <h1 className="text-4xl pt-5">{list.title}</h1>
-                            <p className="font-semibold">
-                                Features: <span className="font-bold ml-3">{list.features_paragraph}</span>
-                            </p>
+        // <div>
+        //     <div className="bg-gradient-to-r from-indigo-50 from-10% via-sky-50 via-30% to-emerald-100 to-90%">
+        //         <h1 className="text-3xl text-center text-[#2ccb99] py-5">My booking room</h1>
+        //         {items.map((list) => (
+        //             <div key={list._id} className="flex lg:w-full rounded-2xl border border-dashed p-2">
+        //                 <div className="lg:w-[50%]">
+        //                     <img src={list.banner_image} alt="Room" />
+        //                 </div>
+        //                 <div className="lg:w-[50%] space-y-6 pl-5">
+        //                     <h1 className="text-4xl pt-5">{list.title}</h1>
+        //                     <p className="font-semibold">
+        //                         Features: <span className="font-bold ml-3">{list.features_paragraph}</span>
+        //                     </p>
 
-                            <div className="flex items-center">
-                                <IoMdPerson className="text-3xl" />
-                                <div className="text-xl">Max Guests: {list.max_guests}</div>
-                            </div>
-                            <p className="text-xl">Room Status: {list.availability}</p>
-                            <p className="text-xl">Date: {list.deadline}</p> {/* Confirm if this is the updated date */}
-                            <div className="flex items-center">
-                                <button onClick={() => handleButtonClick(list)} className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
-                                    Review
-                                </button>
+        //                     <div className="flex items-center">
+        //                         <IoMdPerson className="text-3xl" />
+        //                         <div className="text-xl">Max Guests: {list.max_guests}</div>
+        //                     </div>
+        //                     <p className="text-xl">Room Status: {list.availability}</p>
+        //                     <p className="text-xl">Date: {list.deadline}</p> {/* Confirm if this is the updated date */}
+        //                     <div className="flex items-center">
+        //                         <button onClick={() => handleButtonClick(list)} className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
+        //                             Review
+        //                         </button>
 
-                                <div className="relative flex justify-center">
-                                    <div className="p-5">
-                                        <Link to={`/updates/${list._id}`}>
-                                            <button className="btn btn-outline">Update Now</button>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <button onClick={() => handleCancle(list._id, list.bookingId)} className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
+        //                         <div className="relative flex justify-center">
+        //                             <div className="p-5">
+        //                                 <Link to={`/updates/${list._id}`}>
+        //                                     <button className="btn btn-outline">Update Now</button>
+        //                                 </Link>
+        //                             </div>
+        //                         </div>
+        //                         <button onClick={() => handleCancle(list._id, list.bookingId)} className="btn btn-outline border border-[#aae0aa] hover:bg-[#aae0aa] hover:outline-none hover:text-white text-[#aae0aa]">
+        //                             Cancel
+        //                         </button>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         ))}
+        //         {/* Modal for Review Form */}
+        //         {isOpen && (
+        //             <div className="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        //                 <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        //                     <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">&#8203;</span>
+        //                     <div className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
+        //                         <h3 className="text-lg font-medium leading-6 text-gray-800 capitalize dark:text-white" id="modal-title">
+        //                             Review Room
+        //                         </h3>
+        //                         <form onSubmit={handleReviewSubmit} className="mt-4" action="#">
+        //                             <label className="block mt-3" htmlFor="userName">User Name</label>
+        //                             <input type="text" name="userName" id="userName" placeholder="User Name" value={name} className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
+
+        //                             <label className="block mt-3" htmlFor="commentText">Write A Comment</label>
+        //                             <textarea
+        //                                 name="comment_text"
+        //                                 id="commentText"
+        //                                 placeholder="Write Comment"
+        //                                 className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+        //                             />
+
+        //                             <label htmlFor="rating" className="text-sm text-gray-700 dark:text-gray-200">
+        //                                 Rating (1-5)
+        //                             </label>
+        //                             <input
+        //                                 type="number"
+        //                                 name="rating"
+        //                                 id="rating"
+        //                                 min="1"
+        //                                 max="5"
+        //                                 required
+        //                                 className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+        //                             />
+
+        //                             <div className="mt-4 sm:flex sm:items-center sm:-mx-2">
+        //                                 <button type="button" onClick={() => setIsOpen(false)} className="w-full px-4 py-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+        //                                     Cancel
+        //                                 </button>
+
+        //                                 <input type="submit" value="Submit Comment" className="w-full px-4 py-2 mt-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
+        //                             </div>
+        //                         </form>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         )}
+        //     </div>
+        // </div>
+
+        <div className="bg-gradient-to-r from-indigo-50 from-10% via-sky-50 via-30% to-emerald-100 to-90% py-5">
+    <h1 className="text-2xl sm:text-3xl text-center text-[#2ccb99] mb-5">My Booking Room</h1>
+    <div className="space-y-5 px-4 sm:px-8 lg:px-16">
+        {items.map((list) => (
+            <div 
+                key={list._id} 
+                className="flex flex-col lg:flex-row bg-white rounded-2xl border border-dashed p-4 sm:p-6 lg:gap-6 shadow-md"
+            >
+                {/* Image Section */}
+                <div className="w-full lg:w-1/2">
+                    <img 
+                        src={list.banner_image} 
+                        alt="Room" 
+                        className="rounded-lg w-full h-48 lg:h-auto object-cover" 
+                    />
+                </div>
+
+                {/* Details Section */}
+                <div className="w-full lg:w-1/2 space-y-4">
+                    <h1 className="text-xl sm:text-2xl font-bold">{list.title}</h1>
+                    <p className="font-medium text-gray-600">
+                        Features: <span className="font-bold ml-1">{list.features_paragraph}</span>
+                    </p>
+                    <div className="flex items-center gap-2 text-gray-600">
+                        <IoMdPerson className="text-2xl" />
+                        <span className="text-lg">Max Guests: {list.max_guests}</span>
                     </div>
-                ))}
-                {/* Modal for Review Form */}
-                {isOpen && (
-                    <div className="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                        <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                            <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">&#8203;</span>
-                            <div className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
-                                <h3 className="text-lg font-medium leading-6 text-gray-800 capitalize dark:text-white" id="modal-title">
-                                    Review Room
-                                </h3>
-                                <form onSubmit={handleReviewSubmit} className="mt-4" action="#">
-                                    <label className="block mt-3" htmlFor="userName">User Name</label>
-                                    <input type="text" name="userName" id="userName" placeholder="User Name" value={name} className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
+                    <p className="text-lg text-gray-600">Room Status: {list.availability}</p>
+                    <p className="text-lg text-gray-600">Date: {list.deadline}</p>
 
-                                    <label className="block mt-3" htmlFor="commentText">Write A Comment</label>
-                                    <textarea
-                                        name="comment_text"
-                                        id="commentText"
-                                        placeholder="Write Comment"
-                                        className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
-                                    />
-
-                                    <label htmlFor="rating" className="text-sm text-gray-700 dark:text-gray-200">
-                                        Rating (1-5)
-                                    </label>
-                                    <input
-                                        type="number"
-                                        name="rating"
-                                        id="rating"
-                                        min="1"
-                                        max="5"
-                                        required
-                                        className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
-                                    />
-
-                                    <div className="mt-4 sm:flex sm:items-center sm:-mx-2">
-                                        <button type="button" onClick={() => setIsOpen(false)} className="w-full px-4 py-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
-                                            Cancel
-                                        </button>
-
-                                        <input type="submit" value="Submit Comment" className="w-full px-4 py-2 mt-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <div className="flex flex-wrap gap-3">
+                        <button 
+                            onClick={() => handleButtonClick(list)} 
+                            className="btn btn-outline border-[#aae0aa] hover:bg-[#aae0aa] text-[#aae0aa]"
+                        >
+                            Review
+                        </button>
+                        <Link to={`/updates/${list._id}`}>
+                            <button className="btn btn-outline">Update Now</button>
+                        </Link>
+                        <button 
+                            onClick={() => handleCancle(list._id, list.bookingId)} 
+                            className="btn btn-outline border-[#aae0aa] hover:bg-[#aae0aa] text-[#aae0aa]"
+                        >
+                            Cancel
+                        </button>
                     </div>
-                )}
+                </div>
             </div>
-        </div>
+        ))}
+
+        {/* Review Modal */}
+        {isOpen && (
+            <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 sm:w-full sm:max-w-md">
+                    <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-4">
+                        Review Room
+                    </h3>
+                    <form onSubmit={handleReviewSubmit} className="space-y-4">
+                        <input 
+                            type="text" 
+                            name="userName" 
+                            id="userName" 
+                            placeholder="User Name" 
+                            value={name} 
+                            readOnly 
+                            className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
+                        />
+                        <textarea
+                            name="comment_text"
+                            id="commentText"
+                            placeholder="Write Comment"
+                            required
+                            className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
+                        />
+                        <input
+                            type="number"
+                            name="rating"
+                            id="rating"
+                            placeholder="Rating (1-5)"
+                            min="1"
+                            max="5"
+                            required
+                            className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
+                        />
+                        <div className="flex gap-2">
+                            <button
+                                type="button"
+                                onClick={() => setIsOpen(false)}
+                                className="w-full sm:w-auto px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md dark:bg-gray-700 dark:hover:bg-gray-600"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        )}
+    </div>
+</div>
+
     );
 };
 
