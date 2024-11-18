@@ -1,6 +1,13 @@
+import Aos from "aos";
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 
 const NewsLetter = () => {
+    useEffect(() => {
+        Aos.init();
+
+    }, [])
     return (
         <div data-aos="zoom-in-down">
         <h1 className="text-4xl font-semibold mb-6 mt-6 flex justify-center items-center">Stay Updated: Join Our Newsletter</h1>

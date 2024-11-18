@@ -53,12 +53,22 @@
 
 
 
+import Aos from "aos";
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { RiPriceTag2Line } from "react-icons/ri";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
+
 const Card = ({ card }) => {
+    useEffect(() => {
+        Aos.init();
+
+    }, [])
+    
+
     const { _id, room_images, title, room_description, price_per_night } = card;
 
     // Card background style
@@ -72,14 +82,14 @@ const Card = ({ card }) => {
     };
 
     return (
-        <div
+        <div data-aos="fade-up-right" data-aos-duration="4000"
             className="card mb-10 shadow-lg hover:shadow-2xl transform hover:scale-105"
             style={cardStyle}
         >
             {/* Card content with gradient overlay */}
             <div className="card-details p-5 text-white h-full">
                 <div className="flex flex-col justify-between h-full">
-                    <div className="pt-40 pb-5">
+                    <div data-aos="fade-up-right" data-aos-duration="3000" className="pt-40 pb-5">
                         {/* Title */}
                         <h2 className="text-2xl font-bold mb-2">{title}</h2>
 

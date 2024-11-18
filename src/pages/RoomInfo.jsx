@@ -246,8 +246,14 @@ import { AuthContext } from "../authProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Aos from "aos";
+import 'aos/dist/aos.css'
 
 const RoomInfo = () => {
+    useEffect(() => {
+        Aos.init();
+
+    }, [])
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const [room, setRoom] = useState(data);
@@ -316,9 +322,13 @@ const RoomInfo = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r from-indigo-50 via-sky-50 to-emerald-100">
             <div className="flex flex-col md:flex-row justify-around gap-5 items-center md:max-w-screen-xl mx-auto py-10">
-                <div className="max-w-2xl bg-white rounded-lg shadow-md overflow-hidden">
+                <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className="max-w-2xl bg-white rounded-lg shadow-md overflow-hidden">
                     <img className="object-cover w-full h-64" src={banner_image} alt="Room" />
-                    <div className="p-6">
+                    <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className="p-6">
                         <h2 className="text-2xl font-semibold text-[#158260]">{title}</h2>
                         <p className="mt-2 text-xl text-[#2ccb99]">{room_description}</p>
                         <div className="mt-4">

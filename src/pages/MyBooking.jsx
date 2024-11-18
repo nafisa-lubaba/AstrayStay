@@ -220,8 +220,14 @@ import { AuthContext } from "../authProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
 import 'react-datepicker/dist/react-datepicker.css';
+import Aos from "aos";
+import 'aos/dist/aos.css'
 
 const MyBooking = () => {
+    useEffect(() => {
+        Aos.init();
+
+    }, [])
     const [items, setItems] = useState([]);
     const [selectedRoomTitle, setSelectedRoomTitle] = useState('');
     const [isOpen, setIsOpen] = useState(false);
@@ -413,111 +419,113 @@ const MyBooking = () => {
         // </div>
 
         <div className="bg-gradient-to-r from-indigo-50 from-10% via-sky-50 via-30% to-emerald-100 to-90% py-5">
-    <h1 className="text-2xl sm:text-3xl text-center text-[#2ccb99] mb-5">My Booking Room</h1>
-    <div className="space-y-5 px-4 sm:px-8 lg:px-16">
-        {items.map((list) => (
-            <div 
-                key={list._id} 
-                className="flex flex-col lg:flex-row bg-white rounded-2xl border border-dashed p-4 sm:p-6 lg:gap-6 shadow-md"
-            >
-                {/* Image Section */}
-                <div className="w-full lg:w-1/2">
-                    <img 
-                        src={list.banner_image} 
-                        alt="Room" 
-                        className="rounded-lg w-full h-48 lg:h-auto object-cover" 
-                    />
-                </div>
-
-                {/* Details Section */}
-                <div className="w-full lg:w-1/2 space-y-4">
-                    <h1 className="text-xl sm:text-2xl font-bold">{list.title}</h1>
-                    <p className="font-medium text-gray-600">
-                        Features: <span className="font-bold ml-1">{list.features_paragraph}</span>
-                    </p>
-                    <div className="flex items-center gap-2 text-gray-600">
-                        <IoMdPerson className="text-2xl" />
-                        <span className="text-lg">Max Guests: {list.max_guests}</span>
-                    </div>
-                    <p className="text-lg text-gray-600">Room Status: {list.availability}</p>
-                    <p className="text-lg text-gray-600">Date: {list.deadline}</p>
-
-                    <div className="flex flex-wrap gap-3">
-                        <button 
-                            onClick={() => handleButtonClick(list)} 
-                            className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700"
-                        >
-                            Review
-                        </button>
-                        <Link to={`/updates/${list._id}`}>
-                            <button className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700">Update Now</button>
-                        </Link>
-                        <button 
-                            onClick={() => handleCancle(list._id, list.bookingId)} 
-                            className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700"
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            </div>
-        ))}
-
-        {/* Review Modal */}
-        {isOpen && (
-            <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
-                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 sm:w-full sm:max-w-md">
-                    <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-4">
-                        Review Room
-                    </h3>
-                    <form onSubmit={handleReviewSubmit} className="space-y-4">
-                        <input 
-                            type="text" 
-                            name="userName" 
-                            id="userName" 
-                            placeholder="User Name" 
-                            value={name} 
-                            readOnly 
-                            className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
-                        />
-                        <textarea
-                            name="comment_text"
-                            id="commentText"
-                            placeholder="Write Comment"
-                            required
-                            className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
-                        />
-                        <input
-                            type="number"
-                            name="rating"
-                            id="rating"
-                            placeholder="Rating (1-5)"
-                            min="1"
-                            max="5"
-                            required
-                            className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
-                        />
-                        <div className="flex gap-2">
-                            <button
-                                type="button"
-                                onClick={() => setIsOpen(false)}
-                                className="w-full sm:w-auto px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md dark:bg-gray-700 dark:hover:bg-gray-600"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md"
-                            >
-                                Submit
-                            </button>
+            <h1 className="text-2xl sm:text-3xl text-center text-[#2ccb99] mb-5">My Booking Room</h1>
+            <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className="space-y-5 px-4 sm:px-8 lg:px-16">
+                {items.map((list) => (
+                    <div
+                        key={list._id}
+                        className="flex flex-col lg:flex-row bg-white rounded-2xl border border-dashed p-4 sm:p-6 lg:gap-6 shadow-md"
+                    >
+                        {/* Image Section */}
+                        <div className="w-full lg:w-1/2">
+                            <img
+                                src={list.banner_image}
+                                alt="Room"
+                                className="rounded-lg w-full h-48 lg:h-auto object-cover"
+                            />
                         </div>
-                    </form>
-                </div>
+
+                        {/* Details Section */}
+                        <div className="w-full lg:w-1/2 space-y-4">
+                            <h1 className="text-xl sm:text-2xl font-bold">{list.title}</h1>
+                            <p className="font-medium text-gray-600">
+                                Features: <span className="font-bold ml-1">{list.features_paragraph}</span>
+                            </p>
+                            <div className="flex items-center gap-2 text-gray-600">
+                                <IoMdPerson className="text-2xl" />
+                                <span className="text-lg">Max Guests: {list.max_guests}</span>
+                            </div>
+                            <p className="text-lg text-gray-600">Room Status: {list.availability}</p>
+                            <p className="text-lg text-gray-600">Date: {list.deadline}</p>
+
+                            <div className="flex flex-wrap gap-3">
+                                <button
+                                    onClick={() => handleButtonClick(list)}
+                                    className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700"
+                                >
+                                    Review
+                                </button>
+                                <Link to={`/updates/${list._id}`}>
+                                    <button className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700">Update Now</button>
+                                </Link>
+                                <button
+                                    onClick={() => handleCancle(list._id, list.bookingId)}
+                                    className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+                {/* Review Modal */}
+                {isOpen && (
+                    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+                        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6 sm:w-full sm:max-w-md">
+                            <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-4">
+                                Review Room
+                            </h3>
+                            <form onSubmit={handleReviewSubmit} className="space-y-4">
+                                <input
+                                    type="text"
+                                    name="userName"
+                                    id="userName"
+                                    placeholder="User Name"
+                                    value={name}
+                                    readOnly
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
+                                />
+                                <textarea
+                                    name="comment_text"
+                                    id="commentText"
+                                    placeholder="Write Comment"
+                                    required
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
+                                />
+                                <input
+                                    type="number"
+                                    name="rating"
+                                    id="rating"
+                                    placeholder="Rating (1-5)"
+                                    min="1"
+                                    max="5"
+                                    required
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:ring focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
+                                />
+                                <div className="flex gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsOpen(false)}
+                                        className="w-full sm:w-auto px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md dark:bg-gray-700 dark:hover:bg-gray-600"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md"
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
             </div>
-        )}
-    </div>
-</div>
+        </div>
 
     );
 };

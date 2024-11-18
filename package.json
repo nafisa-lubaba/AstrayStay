@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "axios": "^1.7.7",
     "daisyui": "^4.12.14",
     "firebase": "^11.0.1",

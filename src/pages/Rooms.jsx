@@ -171,7 +171,7 @@ const Rooms = () => {
                                     className="relative max-w-sm bg-gradient-to-br from-white/40 to-white/20 backdrop-blur-lg shadow-xl rounded-lg p-4 transition-transform transform hover:scale-105"
                                 >
                                     {/* Room Image */}
-                                    <figure className="relative h-48 w-full overflow-hidden rounded-lg">
+                                    <figure data-aos="fade-left" className="relative h-48 w-full overflow-hidden rounded-lg">
                                         <img
                                             src={room.room_images}
                                             alt={room.category}
@@ -184,7 +184,7 @@ const Rooms = () => {
                                     </figure>
 
                                     {/* Card Body */}
-                                    <div className="mt-4 space-y-2">
+                                    <div data-aos="fade-up-right" className="mt-4 space-y-2">
                                         <h1 className="text-2xl font-bold text-gray-900">{room.title}</h1>
                                         <p className="text-sm text-gray-600">
                                             <span className="font-semibold">Category:</span> {room.category}
@@ -195,7 +195,7 @@ const Rooms = () => {
                                     </div>
 
                                     {/* Book Now Button */}
-                                    <div className="flex justify-end mt-4">
+                                    <div data-aos="fade-up-right" className="flex justify-end mt-4">
                                         <button className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700">
                                             Book Now
                                         </button>
