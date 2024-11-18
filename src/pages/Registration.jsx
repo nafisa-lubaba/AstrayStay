@@ -3,7 +3,7 @@ import { AuthContext } from '../authProvider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
-import { FaEyeSlash } from "react-icons/fa";
+import { FaEyeSlash, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 
 
@@ -63,73 +63,162 @@ const Registration = () => {
    
 
     return (
-        <div>
-            <div className="hero min-h-screen">
-        <div className=""></div>
+    //     <div>
+    //         <div className="hero min-h-screen">
+    //     <div className=""></div>
        
            
        
 
-        <div className="w-full max-w-md p-8 space-y-3 bg-[#434336] bg-opacity-20 backdrop-blur-base rounded-lg text-[#682018]">
-            <h1 className="text-2xl font-bold text-center">Sign up</h1>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate="" action="" className="space-y-6">
-                <div className="space-y-1 text-sm">
-                    <label htmlFor="username" className="block dark:text-gray-600">Fullname</label>
-                    <input type="text" name="username" id="username" placeholder="Fullname" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-                        {...register("fullName", { required: true })} />
-                    {errors.fullName && <span className="text-red-600">This field is required</span>}
-                </div>
-                <div className="space-y-1 text-sm">
-                    <label htmlFor="username" className="block dark:text-gray-600">Email</label>
-                    <input type="text" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-                        {...register("email", { required: true })} />
-                    {errors.email && <span className="text-red-600">This field is required</span>}
-                </div>
-                <div className="space-y-1 text-sm">
-                    <label htmlFor="username" className="block dark:text-gray-600">Image Url</label>
-                    <input type="text" name="username" id="username" placeholder="Image url" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-                        {...register("imageUrl")} />
+    //     <div className="w-full max-w-md p-8 space-y-3 bg-[#434336] bg-opacity-20 backdrop-blur-base rounded-lg text-[#682018]">
+    //         <h1 className="text-2xl font-bold text-center">Sign up</h1>
+    //         <form onSubmit={handleSubmit(onSubmit)} noValidate="" action="" className="space-y-6">
+    //             <div className="space-y-1 text-sm">
+    //                 <label htmlFor="username" className="block dark:text-gray-600">Fullname</label>
+    //                 <input type="text" name="username" id="username" placeholder="Fullname" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+    //                     {...register("fullName", { required: true })} />
+    //                 {errors.fullName && <span className="text-red-600">This field is required</span>}
+    //             </div>
+    //             <div className="space-y-1 text-sm">
+    //                 <label htmlFor="username" className="block dark:text-gray-600">Email</label>
+    //                 <input type="text" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+    //                     {...register("email", { required: true })} />
+    //                 {errors.email && <span className="text-red-600">This field is required</span>}
+    //             </div>
+    //             <div className="space-y-1 text-sm">
+    //                 <label htmlFor="username" className="block dark:text-gray-600">Image Url</label>
+    //                 <input type="text" name="username" id="username" placeholder="Image url" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+    //                     {...register("imageUrl")} />
 
-                </div>
-                <div className="space-y-1 text-sm">
-                    <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                    <div className="relative">
-                        <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-                            {...register("password", { required: true })} />
-                        {/* Show/hide password toggle */}
-                        <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
-                            {showPassword ? (
-                                <FaEyeSlash className="w-6 h-6" />
-                            ) : (
-                                <FaEyeSlash className="w-6 h-6" />
-                            )}
-                        </button>
-                    </div>
-                    {errors.password && <span className="text-red-600">{errors.password.message}</span>}
-                    <div className="flex justify-end text-xs dark:text-gray-600">
-                        <a rel="noopener noreferrer" href="#">Forgot Password?</a>
-                    </div>
-                </div>
-                <button className="block w-full p-3 text-center rounded-sm  btn btn-outline border border-[#682018] hover:text-white  hover:outline-none hover:bg-[#682018] text-[#682018] dark:text-gray-50 dark:bg-violet-600">Sign up</button>
-            </form>
-            <div className="flex items-center pt-4 space-x-1">
-                <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
+    //             </div>
+    //             <div className="space-y-1 text-sm">
+    //                 <label htmlFor="password" className="block dark:text-gray-600">Password</label>
+    //                 <div className="relative">
+    //                     <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+    //                         {...register("password", { required: true })} />
+    //                     {/* Show/hide password toggle */}
+    //                     <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
+    //                         {showPassword ? (
+    //                             <FaEyeSlash className="w-6 h-6" />
+    //                         ) : (
+    //                             <FaEyeSlash className="w-6 h-6" />
+    //                         )}
+    //                     </button>
+    //                 </div>
+    //                 {errors.password && <span className="text-red-600">{errors.password.message}</span>}
+    //                 <div className="flex justify-end text-xs dark:text-gray-600">
+    //                     <a rel="noopener noreferrer" href="#">Forgot Password?</a>
+    //                 </div>
+    //             </div>
+    //             <button className="block w-full p-3 text-center rounded-sm  btn btn-outline border border-[#682018] hover:text-white  hover:outline-none hover:bg-[#682018] text-[#682018] dark:text-gray-50 dark:bg-violet-600">Sign up</button>
+    //         </form>
+    //         <div className="flex items-center pt-4 space-x-1">
+    //             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
 
-                <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-            </div>
-            <div className="flex justify-center space-x-4">
+    //             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
+    //         </div>
+    //         <div className="flex justify-center space-x-4">
 
-            </div>
-            <p className="text-center sm:px-6 dark:text-gray-600 text-xl">Already have an account?
-                <Link to='/signin' rel="noopener noreferrer" href="#" className="underline text-[#682018] font-semibold text-xl">Sign in</Link>
-            </p>
-        </div>
+    //         </div>
+    //         <p className="text-center sm:px-6 dark:text-gray-600 text-xl">Already have an account?
+    //             <Link to='/signin' rel="noopener noreferrer" href="#" className="underline text-[#682018] font-semibold text-xl">Sign in</Link>
+    //         </p>
+    //     </div>
     
 
-    </div>
+    // </div>
         
             
+    //     </div>
+
+    <div className='flex justify-center items-center bg-gradient-to-r from-cyan-100 to-blue-200 min-h-[calc(100vh-306px)]'>
+    <div className='flex w-full max-w-sm mx-auto overflow-hidden  rounded-lg shadow-lg  lg:max-w-4xl '>
+      <div
+        className='hidden bg-cover bg-center lg:block lg:w-1/2'
+
+      > <img className="w-full h-full" src="https://i.ibb.co/YT1drsW/futuristic-background-with-lines-23-2148487905.jpg" alt="" /></div>
+      <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
+        <div className='flex justify-center mx-auto'>
+          {/* <img
+            className='w-auto h-7 sm:h-8'
+            src='https://merakiui.com/images/logo.svg'
+            alt=''
+          /> */}
         </div>
+
+        <p className='mt-3 text-xl text-center text-gray-600 '>
+          Get Your Free Account Now.
+        </p>
+
+
+
+
+        <div className='flex items-center justify-between mt-4'>
+          <span className='w-1/5 border-b  lg:w-1/4'></span>
+
+         
+
+          <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate="" action="" className="space-y-6">
+          <div className="space-y-1 text-sm text-black">
+            <label htmlFor="username" className="block dark:text-gray-600">Fullname</label>
+            <input type="text" name="username" id="username" placeholder="Fullname" className="w-full text-black border 
+             border-black px-4 py-3 rounded-md"
+              {...register("fullName", { required: true })} />
+            {errors.fullName && <span className="text-red-600">This field is required</span>}
+          </div>
+          <div className="space-y-1 text-sm text-black">
+            <label htmlFor="username" className="block dark:text-gray-600">Email</label>
+            <input type="text" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md border  border-black text-black"
+              {...register("email", { required: true })} />
+            {errors.email && <span className="text-red-600">This field is required</span>}
+          </div>
+          <div className="space-y-1 text-sm">
+            <label htmlFor="username" className="block text-black dark:text-gray-600">Image Url</label>
+            <input type="text" name="username" id="username" placeholder="Image url" className="w-full px-4 py-3 rounded-md border border-black text-black"
+              {...register("imageUrl")} />
+
+          </div>
+          <div className="space-y-1 text-sm">
+            <label htmlFor="password" className="block text-black dark:text-gray-600">Password</label>
+            <div className="relative">
+              <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md  border border-black text-black"
+                {...register("password", { required: true })} />
+              {/* Show/hide password toggle */}
+              <button type="button" className="absolute text-black inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
+                {showPassword ? (
+                  <FaRegEye className="w-6 h-6" />
+                ) : (
+                  <FaRegEyeSlash className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+            {errors.password && <span className="text-red-600">{errors.password.message}</span>}
+            <div className="flex justify-end text-xs dark:text-gray-600">
+              <a rel="noopener noreferrer" href="#">Forgot Password?</a>
+            </div>
+          </div>
+          <button className="block w-full p-3 text-center rounded-sm btn btn-outline border bg-[#158260] hover:text-white hover:outline-none hover:bg-gray-400 text-white">Sign Up</button>
+        </form>
+
+        <div className='flex items-center justify-between mt-4'>
+          <span className='w-1/5 border-b  md:w-1/4'></span>
+
+          <Link
+            to='/signin'
+            className='text-xs text-gray-500 uppercase  hover:underline'
+          >
+            or sign in
+          </Link>
+
+          <span className='w-1/5 border-b  md:w-1/4'></span>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
     );
 };
 

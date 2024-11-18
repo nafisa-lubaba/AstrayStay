@@ -63,13 +63,17 @@ const router = createBrowserRouter([
       {
         path: '/my-booking',
         element:
-          <MyBooking></MyBooking>,
+        <PrivateRoute>
+            <MyBooking></MyBooking>,
+        </PrivateRoute>,
       
        
       },
       {
         path: '/updates/:id',
-        element: <UpdatedRooms></UpdatedRooms>,
+        element: <PrivateRoute>
+          <UpdatedRooms></UpdatedRooms>,
+        </PrivateRoute>,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/myBooking/${params.id}`),
       }

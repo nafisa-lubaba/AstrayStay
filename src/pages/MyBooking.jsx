@@ -445,16 +445,16 @@ const MyBooking = () => {
                     <div className="flex flex-wrap gap-3">
                         <button 
                             onClick={() => handleButtonClick(list)} 
-                            className="btn btn-outline border-[#aae0aa] hover:bg-[#aae0aa] text-[#aae0aa]"
+                            className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700"
                         >
                             Review
                         </button>
                         <Link to={`/updates/${list._id}`}>
-                            <button className="btn btn-outline">Update Now</button>
+                            <button className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700">Update Now</button>
                         </Link>
                         <button 
                             onClick={() => handleCancle(list._id, list.bookingId)} 
-                            className="btn btn-outline border-[#aae0aa] hover:bg-[#aae0aa] text-[#aae0aa]"
+                            className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-md transition-transform transform hover:scale-105 hover:bg-green-700"
                         >
                             Cancel
                         </button>
