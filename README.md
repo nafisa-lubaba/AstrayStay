@@ -1,8 +1,26 @@
-# React + Vite
+### Live Site URL:
+[https://astrostay1.netlify.app/](https://astrostay1.netlify.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Technology Used:
+-**React**,
+-**Tailwind**,
+-**Firebase**,
+-**Mongodb**
+-**Express**,
+-**Node js**,
+ 
+ ## Package
+**Animation library Aos**
+**pigeon-maps**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#Category Assignment-0004
+
+# key Features
+
+- Authentication (email , password, googleLogin)
+- User can Book Room (dynamic Book)
+- Show Room Details 
+- Delete,Update Review 
+- Availavle And UnAvailabe Rooms
